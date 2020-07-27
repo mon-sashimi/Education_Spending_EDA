@@ -87,11 +87,11 @@ for iData = 1:numel(data)
    thisData = outerjoin(data{iData},stateMeta,...
       'Keys',{'State'},'MergeKeys',false);
    years = thisData.Properties.UserData.t;
-   states = thisData.Properties.RowNames(2:end);
-   C = p__.colorByParty(thisData((2:end),:),pars.PartyColors);
+   states = thisData.Properties.RowNames;
+   C = p__.colorByParty(thisData,pars.PartyColors);
    ax(iData) = subplot(nRow,nCol,iData);
    set(ax(iData),pars.AxesParams{:});
-   y = table2array(data{iData}(2:end,:)).'; % Exclude first row (United States)
+   y = table2array(data{iData}).'; % Exclude first row (United States)
    for iState = 1:numel(states)
       line(ax(iData),years,y(:,iState),pars.TrendParams{:},...
          'DisplayName',states{iState},...
